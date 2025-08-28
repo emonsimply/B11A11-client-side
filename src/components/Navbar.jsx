@@ -57,7 +57,7 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
       <div className="navbar-end gap-2">
-        <NavLink><button className="btn bg-teal-500 rounded-full">Login</button></NavLink>
+        <NavLink to="login"><button className="btn bg-teal-500 hover:bg-teal-600 rounded-full text-white">Login</button></NavLink>
         {/* Theme Toggle Button */}
         <button onClick={toggleTheme} className="btn btn-ghost btn-circle">
           {theme === "light" ? (
