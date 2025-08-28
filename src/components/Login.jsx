@@ -5,7 +5,7 @@ import { Link } from "react-router";
 const Login = () => {
   return (
     <div className="flex items-center justify-center px-4">
-      <div className="w-full max-w-md shadow-lg rounded-2xl p-8 bg-white">
+      <div className="w-full max-w-md shadow-lg rounded-2xl p-8 bg-gray-100">
         <h2 className="text-3xl font-bold text-center text-teal-500 mb-6">
           Login
         </h2>
@@ -50,7 +50,7 @@ const Login = () => {
         </button>
 
         {/* Redirect link */}
-        <p className="text-sm text-center text-gray-600 dark:text-gray-300 mt-4">
+        <p className="text-sm text-center text-gray-600 mt-4">
           Don’t have an account?{" "}
           <Link
             to="/register"
