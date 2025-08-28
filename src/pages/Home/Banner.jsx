@@ -17,7 +17,7 @@ const Banner = () => {
             We bring the best destinations closer to you.
           </p>
 
-          <Link to="/all-packages">
+          <Link to="/allPackages">
             <button className="mt-6 px-6 py-3 bg-teal-500 text-white font-semibold rounded-lg shadow hover:bg-teal-600 transition">
               Explore All Packages
             </button>
