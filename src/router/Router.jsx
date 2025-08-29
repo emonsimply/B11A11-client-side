@@ -5,12 +5,14 @@ import Login from "../components/Login";
 import Register from "../components/Register";
 import AllPackages from "../pages/Home/AllPackages/AllPackages";
 import AddPackage from "../pages/AddPackage";
+import NotFound from "../pages/NotFound";
 
 
 const Router = createBrowserRouter([
   {
     path: "/",
     Component: MainLayout,
+    errorElement: <NotFound></NotFound>,
     children: [
       {
         index: true,

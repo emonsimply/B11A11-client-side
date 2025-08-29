@@ -52,7 +52,7 @@ const Navbar = () => {
           </ul>
         </div>
         <img className="w-12" src={logo} alt="" />
-        <a className="btn btn-ghost text-xl">TripNest</a>
+        <a className="btn btn-ghost text-xl font-bold text-teal-800">TripNest</a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{links}</ul>

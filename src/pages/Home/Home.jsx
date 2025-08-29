@@ -4,7 +4,7 @@ import FeaturedPackages from './FeaturedPackages';
 
 const Home = () => {
   return (
-    <div className='max-w-7xl mx-auto'>
+    <div>
       <Banner></Banner>
       <FeaturedPackages></FeaturedPackages>
     </div>
