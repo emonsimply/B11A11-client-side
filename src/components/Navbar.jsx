@@ -6,8 +6,19 @@ import { AuthContext } from "../context/AuthContext/AuthContext";
 import profilePhoto from "../assets/images/profile-picture.png";
 
 const Navbar = () => {
-  const { user } = use(AuthContext);
+  const { user, signOutUser } = use(AuthContext);
+  console.log(user);
   const [open, setOpen] = useState(false);
+
+  const handleLogout = () => {
+    signOutUser()
+      .then(() => {
+        console.log("Sign-out successful.");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 
   const links = (
     <>
@@ -83,7 +94,7 @@ const Navbar = () => {
               className="w-10 h-10 rounded-full border-2 border-teal-500 overflow-hidden"
             >
               <img
-                src={user.photoURL || {profilePhoto}}
+                src={user.photoURL ? user.photoURL : profilePhoto}
                 alt="profile"
                 className="w-full h-full object-cover"
               />
@@ -91,25 +102,25 @@ const Navbar = () => {
 
             {/* Dropdown */}
             {open && (
-              <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden border border-gray-200 dark:border-gray-700">
-                {/* <Link
+              <div className="absolute right-0 mt-2 w-48 bg-teal-50 rounded-lg shadow-lg overflow-hidden dark:border-gray-700">
+                <Link
                 to="/add-package"
-                className="block px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-teal-100 dark:hover:bg-teal-600"
+                className="block px-4 py-2 text-gray-700 hover:text-white hover:bg-teal-600"
               >
                 Add Package
-              </Link> */}
-                {/* <Link
+              </Link>
+                <Link
                 to="/my-packages"
-                className="block px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-teal-100 dark:hover:bg-teal-600"
+                className="block px-4 py-2 text-gray-700 hover:text-white hover:bg-teal-600"
               >
                 Manage My Packages
-              </Link> */}
-                {/* <button
+              </Link>
+                <button
                 onClick={handleLogout}
-                className="w-full text-left px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-teal-100 dark:hover:bg-teal-600"
+                className="w-full text-left px-4 py-2 text-gray-700 hover:text-white hover:bg-teal-600"
               >
                 Logout
-              </button> */}
+              </button>
               </div>
             )}
           </div>

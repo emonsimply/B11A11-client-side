@@ -1,9 +1,10 @@
-import React, { use } from 'react';
+import React, { use, useState } from 'react';
 import { Link } from 'react-router';
 import { AuthContext } from '../context/AuthContext/AuthContext';
+import { ToastContainer, toast } from 'react-toastify';
 
 const Register = () => {
-
+const [errorMessage, setErrorMessage] = useState(" ");
   const {createUser} = use(AuthContext)
 
   const handleRegister = (event) => {
@@ -15,19 +16,41 @@ const Register = () => {
     const photoURL = form.photoURL.value;
     console.log(name, email, password, photoURL);
 
+
+
+    setErrorMessage("");
+
+    if (!/[A-Z]/.test(password)) {
+      setErrorMessage("Password must include an uppercase letter.");
+      return;
+    }
+    if (!/[a-z]/.test(password)) {
+      setErrorMessage("Password must include a lowercase letter.");
+      return;
+    }
+    if (password.length < 6) {
+      setErrorMessage("Password must be at least 6 characters.");
+      return;
+    }
+
+
     // createUser
     createUser (email, password)
     .then(result => {
       console.log(result.user);
+      toast("User Registered Successfully" );
     })
     .catch(error =>{
       console.log(error);
+      setErrorMessage(error.message);
+      toast(`${error.message}` );
     })
 
   }
 
   return (
     <div className="flex items-center justify-center px-4">
+      <ToastContainer />
           <div className="w-full max-w-md shadow-lg rounded-2xl p-8 bg-gray-100">
             <h2 className="text-3xl font-bold text-center text-teal-500 mb-6">
               Register
@@ -83,6 +106,12 @@ const Register = () => {
               >
                 Register Now
               </button>
+
+              {errorMessage && (
+            <p className="text-red-500 text-sm mt-1 text-center">
+              {errorMessage}
+            </p>
+          )}
             </form>
 
             {/* Redirect link */}

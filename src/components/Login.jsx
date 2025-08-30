@@ -1,7 +1,8 @@
 import React, { use } from "react";
-import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router";
 import { AuthContext } from "../context/AuthContext/AuthContext";
+import { ToastContainer, toast } from 'react-toastify';
+import SocialLogin from "./SocialLogin";
 
 const Login = () => {
   const { singInUser } = use(AuthContext);
@@ -17,14 +18,17 @@ const Login = () => {
     singInUser(email, password)
       .then((result) => {
         console.log(result.user);
+        toast("Logged In Successfully");
       })
       .catch((error) => {
         console.log(error);
+        toast(`${error.message}`);
       });
   };
 
   return (
     <div className="flex items-center justify-center px-4">
+      <ToastContainer />
       <div className="w-full max-w-md shadow-lg rounded-2xl p-8 bg-gray-100">
         <h2 className="text-3xl font-bold text-center text-teal-500 mb-6">
           Login
@@ -62,13 +66,7 @@ const Login = () => {
           </button>
         </form>
 
-        <div className="divider">OR</div>
-
-        {/* Google Login */}
-        <button className="btn w-full rounded-full text-black bg-white">
-          <FcGoogle />
-          Login with Google
-        </button>
+        <SocialLogin></SocialLogin>
 
         {/* Redirect link */}
         <p className="text-sm text-center text-gray-600 mt-4">
