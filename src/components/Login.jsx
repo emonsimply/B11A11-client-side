@@ -1,8 +1,28 @@
-import React from "react";
+import React, { use } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router";
+import { AuthContext } from "../context/AuthContext/AuthContext";
 
 const Login = () => {
+  const { singInUser } = use(AuthContext);
+
+  const handleLogin = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(email, password);
+
+    // singInUser
+    singInUser(email, password)
+      .then((result) => {
+        console.log(result.user);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <div className="flex items-center justify-center px-4">
       <div className="w-full max-w-md shadow-lg rounded-2xl p-8 bg-gray-100">
@@ -11,7 +31,7 @@ const Login = () => {
         </h2>
 
         {/* Form */}
-        <form className="space-y-4">
+        <form onSubmit={handleLogin} className="space-y-4">
           <div>
             <label className="block mb-1 text-sm text-gray-700">Email</label>
             <input
@@ -46,7 +66,8 @@ const Login = () => {
 
         {/* Google Login */}
         <button className="btn w-full rounded-full text-black bg-white">
-          <FcGoogle />Login with Google
+          <FcGoogle />
+          Login with Google
         </button>
 
         {/* Redirect link */}
